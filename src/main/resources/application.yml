@@ -1,0 +1,62 @@
+server:
+  port: 8080
+  # tomcat配置
+  servlet:
+    session:
+      timeout: 60m
+
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sheepMall
+    username: root
+    password: 1990hb0721
+
+  # 连接池配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+
+  # redis配置
+  data:
+    redis:
+        host: localhost
+        port: 6379
+        database: 0
+
+  # 邮件配置
+  mail:
+    protocol: smtp
+    host: smtp.163.com
+    port: 465
+    username: hb9778@163.com
+    password: APaJUCnq3ZenmD3p
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+
+  # activemq配置
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    pool:
+      enabled: true
+      max-connections: 10
+    packages:
+      trust-all: true
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
