@@ -9,31 +9,31 @@ spring:
   # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sheepMall
-    username: root
-    password: 1990hb0721
+    url: ENC(qe/DD5yYkIaZLGaWPiEVMKy32dZyvRn74DHnMbGyOgHgvHMV9DV/aZkF1n4y4yyIhirNapZQjM9giTJvdf2H0zzj4/+DwzVC0S0cMJoGGdw=)
+    username: ENC(LpGNyeyLkD8N1WX8JzL4pQFTVKUEUzHNzqo8nj+tz/1jcJJsfCZ4iIdRjQZaocbO)
+    password: ENC(3UKZpUP5soUSyh/H6kXLp2bAeIAw92HwIJY9tnzU/mBaVdbEljB2F47Gdwcc9uFM)
 
   # 连接池配置
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     open-in-view: false
 
   # redis配置
   data:
     redis:
-        host: localhost
-        port: 6379
-        database: 0
+      host: localhost
+      port: 6379
+      database: 0
 
   # 邮件配置
   mail:
     protocol: smtp
     host: smtp.163.com
     port: 465
-    username: hb9778@163.com
-    password: APaJUCnq3ZenmD3p
+    username: ENC(/M4qiNnERno1xNMSeUPx0nrkcMHd3+bE/e+SXBlelMNCIGjqdWA53+SV1QDi+dTc)
+    password: ENC(ey0gjmKOVgruvxVQvJTwjwsPmYuNqFf9O+tPS6/WwRq5eMs13Uk051AD1b+jobYW0G7bG9OZdwQ83vJGgbU/wA==)
     default-encoding: utf-8
     properties:
       mail:
@@ -56,7 +56,19 @@ spring:
     packages:
       trust-all: true
 
+  #jackson配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
+# jasypt加密配置
+jasypt:
+  encryptor:
+    password: ${jasypt.encryptor.password}
+
+# 日志配置
+logging:
+  file:
+    name: spring_log.log
+    path: ./logs
+  config: classpath:logback-spring.xml
