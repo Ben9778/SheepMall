@@ -11,19 +11,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MailService {
-
     @Resource
     private JavaMailSender javaMailSender;
 
     public String sendEmail(String to) {
         SimpleMailMessage message = new SimpleMailMessage();
         String code = GenerateCode.generateCode();
-        message.setFrom("hb9778@163.com");
+        message.setFrom("DrTech@163.com");
         message.setTo(to);
         String subject = "懂尔科技";
         message.setSubject(subject);
-        String text = "尊敬的用户: \n\n验证码:[],请在1分钟内进行验证。\n\n如有问题请联系客服。\n\n感谢您的使用！".replace("[]", code);
-        message.setText(text);
+        String mailContent = "尊敬的用户: \n\n验证码:[],请在1分钟内进行验证。\n\n如有问题请联系客服。\n\n感谢您的使用！";
+        message.setText(mailContent.replace("[]", code));
         javaMailSender.send(message);
         return code;
     }
