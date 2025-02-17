@@ -12,7 +12,8 @@ public enum StatusEnum {
     REFUNDING("退款中"),
     REFUND_SUCCESS("已退款"),
     REFUND_FAILED("退款失败"),
-    REJECTED("拒绝");
+    REJECTED("拒绝"),
+    AGREE("同意");
 
     private final String description;
 
