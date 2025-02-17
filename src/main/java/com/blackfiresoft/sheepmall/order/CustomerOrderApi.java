@@ -59,14 +59,4 @@ public class CustomerOrderApi {
         orderFactory.updateOrderStatus(orderId,type);
         return ResultEntity.success();
     }
-
-    //测试使用，实际从支付下单
-    @PostMapping("/create")
-    public ResultEntity createOrder(@RequestBody Orders order) {
-        if (order == null) {
-            return ResultEntity.fail(ResultEnum.PARAM_ERROR);
-        }
-        orderFactory.createOrder(order);
-        return ResultEntity.success();
-    }
 }
