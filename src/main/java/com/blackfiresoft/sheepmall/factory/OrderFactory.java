@@ -22,7 +22,8 @@ public interface OrderFactory {
     default void deleteOrders(Long[] orderIds) {
     }
 
-    default void createOrder(Orders order) {
+    default Orders createOrder(Orders order) {
+        return null;
     }
 
     default Page<Orders> getOrdersByStatus(String status, int pageNo, int pageSize) {
@@ -32,10 +33,13 @@ public interface OrderFactory {
     default void updateOrderStatus(Long orderId, String status) {
     }
 
+    default void updateOrderStatus(String orderNo,String status) {
+    }
+
     default void updateOrderStatus(Long orderId,int type) {
     }
 
-    default Orders getOrderByOrderNo(String orderNumber) {
+    default Orders getOrderByOrderNo(String orderNo) {
         return null;
     }
 
