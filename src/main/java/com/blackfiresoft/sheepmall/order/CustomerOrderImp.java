@@ -1,6 +1,7 @@
 package com.blackfiresoft.sheepmall.order;
 
 import com.blackfiresoft.sheepmall.factory.OrderFactory;
+import com.blackfiresoft.sheepmall.payment.service.PayService;
 import com.blackfiresoft.sheepmall.user.Users;
 import com.blackfiresoft.sheepmall.util.StatusEnum;
 import jakarta.annotation.Resource;
@@ -36,10 +37,10 @@ public class CustomerOrderImp implements OrderFactory {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void createOrder(Orders order) {
+    public Orders createOrder(Orders order) {
         UUID uuid = UUID.randomUUID();
         order.setOrderNo(uuid.toString().replace("-", ""));
-        orderRepository.saveAndFlush(order);
+        return orderRepository.saveAndFlush(order);
     }
 
     /**
@@ -52,6 +53,10 @@ public class CustomerOrderImp implements OrderFactory {
     public void updateOrderStatus(Long orderId, int type) {
         orderRepository.findById(orderId).ifPresent(order -> {
             if (type == 0) {
+                //关闭支付订单
+                PayService payService = new PayService();
+                payService.closeOrder(order.getOrderNo());
+                //修改订单状态为'已取消'
                 order.setStatus(StatusEnum.CANCELLED.toString());
                 orderRepository.saveAndFlush(order);
             } else if (type == 1) {
