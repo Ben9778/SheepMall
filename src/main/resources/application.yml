@@ -69,6 +69,6 @@ jasypt:
 # 日志配置
 logging:
   file:
-    name: spring_log.log
+    name: dr_sheepMall.log
     path: ./logs
   config: classpath:logback-spring.xml
