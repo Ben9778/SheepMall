@@ -47,6 +47,15 @@ public class OrderImp implements OrderFactory {
     }
 
     @Override
+    public void updateOrderStatus(String orderNo, String status){
+       Orders order=orderRepository.findByOrderNo(orderNo);
+        if(order!=null){
+            order.setStatus(status);
+            orderRepository.saveAndFlush(order);
+        }
+    }
+
+    @Override
     public Orders getOrderByOrderNo(String orderNo){
         return orderRepository.findByOrderNo(orderNo);
     }
